@@ -22,10 +22,11 @@ public class Main {
         ArrayStack<Integer> arrayStack = new ArrayStack<>();
         double time1 = testQueue(arrayStack, opCount);
         System.out.println("ArrayStack, time: " + time1 + "s");
+        System.out.println("---------------------------");
         LinkedListStack<Integer> linkedListStack = new LinkedListStack<>();
         double time2 = testQueue(linkedListStack, opCount);
         System.out.println("LinkedListStack, time: " + time2 + "s");
 
-        //其实这个时间复杂的比较复杂，因为LinkedListStack包含更多new操作
+        //其实这个时间复杂度比较复杂，因为LinkedListStack包含更多new操作
     }
 }
