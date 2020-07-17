@@ -2,17 +2,17 @@ import java.util.ArrayList;
 
 public class Main {
 
-    public static void main(String[] args){
+    private static double testMap(Map<String, Integer> map, String filename){
 
-        System.out.println("Pride and Prejudice");
+        long startTime = System.nanoTime();
 
+        System.out.println(filename);
         ArrayList<String> words = new ArrayList<>();
-        if(FileOperation.readFile("pride-and-prejudice.txt", words)) {
+        if(FileOperation.readFile(filename, words)) {
             System.out.println("Total words: " + words.size());
 
-            LinkedListMap<String, Integer> map = new LinkedListMap<>();
-            for (String word : words) {
-                if (map.contains(word))
+            for (String word : words){
+                if(map.contains(word))
                     map.set(word, map.get(word) + 1);
                 else
                     map.add(word, 1);
@@ -23,26 +23,24 @@ public class Main {
             System.out.println("Frequency of PREJUDICE: " + map.get("prejudice"));
         }
 
-        System.out.println();
+        long endTime = System.nanoTime();
 
+        return (endTime - startTime) / 1000000000.0;
+    }
 
-        ArrayList<String> words2 = new ArrayList<>();
-        if(FileOperation.readFile("pride-and-prejudice.txt", words2)) {
-            System.out.println("Total words: " + words2.size());
+    public static void main(String[] args) {
 
-            BSTMap<String, Integer> map = new BSTMap<>();
-            for (String word : words2) {
-                if (map.contains(word))
-                    map.set(word, map.get(word) + 1);
-                else
-                    map.add(word, 1);
-            }
+        String filename = "pride-and-prejudice.txt";
 
-            System.out.println("Total different words: " + map.getSize());
-            System.out.println("Frequency of PRIDE: " + map.get("pride"));
-            System.out.println("Frequency of PREJUDICE: " + map.get("prejudice"));
-        }
+        BSTMap<String, Integer> bstMap = new BSTMap<>();
+        double time1 = testMap(bstMap, filename);
+        System.out.println("BST Map: " + time1 + " s");
 
         System.out.println();
+
+        LinkedListMap<String, Integer> linkedListMap = new LinkedListMap<>();
+        double time2 = testMap(linkedListMap, filename);
+        System.out.println("Linked List Map: " + time2 + " s");
+
     }
 }
