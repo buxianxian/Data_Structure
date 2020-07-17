@@ -3,7 +3,7 @@ public interface Map<K, V> {
     V remove(K key);
     boolean contains(K key);
     V get(K key);
-    void Set(K key, V newValue);
+    void set(K key, V newValue);
     int getSize();
     boolean isEmpty();
 }
