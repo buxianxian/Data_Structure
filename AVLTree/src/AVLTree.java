@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Map;
 
 public class AVLTree<K extends Comparable<K>, V> {
 
@@ -294,40 +293,40 @@ public class AVLTree<K extends Comparable<K>, V> {
             }
         }
 
-            if (retNode == null) {
-                return null;
-            }
+        if (retNode == null) {
+            return null;
+        }
 
-            //更新height
-            retNode.height = Math.max(getHeight(retNode.left), getHeight(retNode.right)) + 1;
+        //更新height
+        retNode.height = Math.max(getHeight(retNode.left), getHeight(retNode.right)) + 1;
 
-            //计算平衡因子
-            int balanceFactor = getBalanceFactor(retNode);
+        //计算平衡因子
+        int balanceFactor = getBalanceFactor(retNode);
 
-            //平衡维护
-            //LL
-            if (balanceFactor > 1 && getBalanceFactor(retNode.left) >= 0) {
-                return rightRotate(retNode);
-            }
+        //平衡维护
+        //LL
+        if (balanceFactor > 1 && getBalanceFactor(retNode.left) >= 0) {
+            return rightRotate(retNode);
+        }
 
-            //RR
-            if (balanceFactor < -1 && getBalanceFactor(retNode.right) <= 0) {
-                return leftRotate(retNode);
-            }
+        //RR
+        if (balanceFactor < -1 && getBalanceFactor(retNode.right) <= 0) {
+            return leftRotate(retNode);
+        }
 
-            //LR
-            if (balanceFactor > 1 && getBalanceFactor(retNode.left) < 0) {
-                retNode.left = leftRotate(retNode.left);
-                return rightRotate(retNode);
-            }
+        //LR
+        if (balanceFactor > 1 && getBalanceFactor(retNode.left) < 0) {
+            retNode.left = leftRotate(retNode.left);
+            return rightRotate(retNode);
+        }
 
-            //RL
-            if (balanceFactor < -1 && getBalanceFactor(retNode.right) > 0) {
-                retNode.right = rightRotate(retNode.right);
-                return leftRotate(retNode);
-            }
+        //RL
+        if (balanceFactor < -1 && getBalanceFactor(retNode.right) > 0) {
+            retNode.right = rightRotate(retNode.right);
+            return leftRotate(retNode);
+        }
 
-            return retNode;
+        return retNode;
     }
 
     public static void main(String[] args){
@@ -364,4 +363,3 @@ public class AVLTree<K extends Comparable<K>, V> {
         System.out.println();
     }
 }
-
